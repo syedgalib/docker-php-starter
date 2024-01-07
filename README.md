@@ -1,7 +1,7 @@
 # Docker PHP Starter Template
 
 ## Configuration
-- PHP 8.0.2
+- PHP 7.4.3
 - MySql 8.0
 
 ## Installation
