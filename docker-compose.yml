@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: my-app-app
+    restart: always
+    working_dir: /var/www/html
+    volumes:
+      - ./app:/var/www/html
+      - ./conf/php:/usr/local/etc/php
+      - ./logs/php:/var/log
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: docker
+  
+  nginx:
+    image: nginx:1.19-alpine
+    container_name: my-app-server
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./conf/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./logs/nginx/:/var/log/nginx/
+
+  db:
+    image: mysql:8.0
+    container_name: my-app-db
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: docker
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: my-app-phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+
+volumes:
+  mysqldata: 
