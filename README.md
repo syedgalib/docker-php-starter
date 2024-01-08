@@ -10,7 +10,7 @@ composer create-project syedgalib/docker-php-starter my-project
 ```
 
 ## Initialization
-Navigate to `docker` directory in the terminal and run
+Open the terminal in the root directory and run
 ```shell
 docker compose up -d
 ```
@@ -26,7 +26,7 @@ Use `app` directory for project files.
 
 
 ## Exit 
-To stop the application, navigate to `docker` directory in the terminal and run
+To stop the application, open the terminal in the root directory and run
 ```shell
 docker compose down
 ```
