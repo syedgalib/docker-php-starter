@@ -14,7 +14,7 @@ services:
       - ./logs/php:/var/log
     environment:
       DB_HOST: db
-      DB_USER: root
+      DB_USER: admin
       DB_PASSWORD: root
       DB_NAME: docker
   
